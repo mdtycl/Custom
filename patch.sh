@@ -2,9 +2,9 @@
 # https://github.com/gd0772/AutoBuild-OpenWrt
 # common Module by gd772
 
-TIME() {
+TIME()
 
-#[[ -z "$1" ]] && {
+{
 	echo -ne " "
 } || {
      case $1 in
