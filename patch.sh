@@ -15,9 +15,7 @@ TIME() {
 		z) Color="${Purple}";;
 		x) Color="${Grey}";;
 	esac
-		}
-	}
-}
+
 echo
 TIME r "删除无用主题"
 rm -rf ./feeds/freifunk/themes
