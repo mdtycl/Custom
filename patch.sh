@@ -25,7 +25,7 @@ TIME r "删除无用主题"
 rm -rf ./feeds/freifunk/themes
 rm -rf ./package/lean/luci-theme-argon
 rm -rf ./feeds/luci/themes/luci-theme-material
-echo
+
 TIME r "删除重复插件"
 rm -rf ./feeds/packages/net/smartdns
 rm -rf ./feeds/packages/admin/netdata
@@ -34,22 +34,20 @@ rm -rf ./package/lean/luci-app-jd-dailybonus
 rm -rf ./feeds/luci/applications/luci-app-rp-pppoe-server
 rm -rf ./package/lean/luci-app-usb-printer
 echo
-TIME y "添加 gd772常用 插件包"
+TIME y "添加 gd772 插件包..."
 rm -rf package/gd772 && git clone https://github.com/gd0772/package package/gd772
-echo
 TIME y "插件包 添加完成"
-echo
+
 TIME y "修改 默认IP为 192.168.123.2"
 sed -i "s/192.168.1.1/192.168.123.2/g" package/base-files/files/bin/config_generate
-echo
+#echo
 #TIME y "修改 主机名为 N1"
 #sed -i "s/'OpenWrt'/'N1'/g" package/base-files/files/bin/config_generate
-echo
+
 TIME y "修改 系统文件"
 curl -fsSL https://raw.githubusercontent.com/gd0772/patch/main/zzz-default-settings > ./package/lean/default-settings/files/zzz-default-settings
 curl -fsSL https://raw.githubusercontent.com/gd0772/patch/main/x86_index.htm > ./package/lean/autocore/files/x86/index.htm
 #curl -fsSL https://raw.githubusercontent.com/gd0772/patch/main/n1_index.htm > ./feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
-echo
 TIME y "系统文件 修改完成"
 echo
 TIME y "添加 SSR Plus+"
@@ -189,19 +187,16 @@ TIME y "调整 分流助手 到 网络菜单"
 sed -i 's/\"services\"/\"network\"/g' package/lean/luci-app-mwan3helper/luasrc/controller/mwan3helper.lua
 curl -fsSL https://raw.githubusercontent.com/gd0772/patch/main/mwan3helper_status.htm > ./package/lean/luci-app-mwan3helper/luasrc/view/mwan3helper/mwan3helper_status.htm
 
-echo 
 TIME y "调整 Dockerman 到 服务 菜单"
 sed -i 's/"admin",/"admin","services",/g' package/gd772/luci-app-dockerman/luasrc/controller/*.lua
 sed -i 's/"admin/"admin\/services/g' package/gd772/luci-app-dockerman/luasrc/model/*.lua
 sed -i 's/"admin/"admin\/services/g' package/gd772/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
 sed -i 's/"admin/"admin\/services/g' package/gd772/luci-app-dockerman/luasrc/view/dockerman/*.htm
 sed -i 's/"admin/"admin\/services/g' package/gd772/luci-app-dockerman/luasrc/view/dockerman/cbi/*.htm
-echo
 TIME y "调整 SSRP 到 GFW 菜单"
 sed -i 's/services/vpn/g' package/gd772/ssrplus/luci-app-ssr-plus/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/gd772/ssrplus/luci-app-ssr-plus/luasrc/model/cbi/shadowsocksr/*.lua
 sed -i 's/services/vpn/g' package/gd772/ssrplus/luci-app-ssr-plus/luasrc/view/shadowsocksr/*.htm
-echo
 TIME y "调整 Pass Wall 到 GFW 菜单"
 sed -i 's/services/vpn/g' package/gd772/passwall/luci-app-passwall/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/gd772/passwall/luci-app-passwall/luasrc/model/cbi/passwall/api/*.lua
@@ -214,32 +209,27 @@ sed -i 's/services/vpn/g' package/gd772/passwall/luci-app-passwall/luasrc/view/p
 sed -i 's/services/vpn/g' package/gd772/passwall/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
 sed -i 's/services/vpn/g' package/gd772/passwall/luci-app-passwall/luasrc/view/passwall/rule/*.htm
 sed -i 's/services/vpn/g' package/gd772/passwall/luci-app-passwall/luasrc/view/passwall/server/*.htm
-echo
 TIME y "调整 Hello World 到 GFW 菜单"
 sed -i 's/services/vpn/g' package/gd772/luci-app-vssr/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/gd772/luci-app-vssr/luasrc/model/cbi/vssr/*.lua
 sed -i 's/services/vpn/g' package/gd772/luci-app-vssr/luasrc/view/vssr/*.htm
-echo
 TIME y "调整 Open Clash 到 GFW 菜单"
 sed -i 's/services/vpn/g' package/gd772/luci-app-openclash/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/gd772/luci-app-openclash/luasrc/*.lua
 sed -i 's/services/vpn/g' package/gd772/luci-app-openclash/luasrc/model/cbi/openclash/*.lua
 sed -i 's/services/vpn/g' package/gd772/luci-app-openclash/luasrc/view/openclash/*.htm
-echo
 TIME y "调整 V2ray服务 到 GFW 菜单"
 sed -i 's/services/vpn/g' package/lean/luci-app-v2ray-server/luasrc/controller/*.lua
 sed -i 's/services/vpn/g' package/lean/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/*.lua
 sed -i 's/services/vpn/g' package/lean/luci-app-v2ray-server/luasrc/view/v2ray_server/*.htm
-echo
 TIME y "更新 x86 编译日期"
 sed -i "s/2021.08.08/$(TZ=UTC-8 date "+%Y.%m.%d")/g" package/lean/autocore/files/x86/index.htm
 #TIME y "更新 N1 编译日期"
 #sed -i "s/2021.08.08/$(TZ=UTC-8 date "+%Y.%m.%d")/g" feeds/luci/modules/luci-mod-admin-full/luasrc/view/admin_status/index.htm
 
 # echo 
-TIME y "更换内核"
+#TIME y "更换内核"
 #sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
 #sed -i 's/KERNEL_TESTING_PATCHVER:=5.4/KERNEL_TESTING_PATCHVER:=4.19/g' ./target/linux/x86/Makefile
-echo
 TIME y "更新 修改后的配置"
 ./scripts/feeds update -i
