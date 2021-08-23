@@ -3,7 +3,7 @@
 # common Module by gd772
 
 TIME() {
-Compte=$(date +%Y年%m月%d号%H时%M分)
+
 [[ -z "$1" ]] && {
 	echo -ne " "
 } || {
