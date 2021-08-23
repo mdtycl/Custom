@@ -81,6 +81,9 @@ rm -rf ./feeds/packages/admin/netdata && svn co https://github.com/sirpdboy/sirp
 echo
 TIME y "添加 Dockerman"
 rm -rf package/gd772/luci-app-dockerman && svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman package/gd772/luci-app-dockerman
+echo
+TIME y "添加 应用过滤"
+rm -rf package/gd772/OpenAppFilter && git clone https://github.com/destan19/OpenAppFilter package/gd772/OpenAppFilter
 echo              
 TIME y "修改插件名称..."
 sed -i 's/"管理权"/"改密码"/g' feeds/luci/modules/luci-base/po/zh-cn/base.po
