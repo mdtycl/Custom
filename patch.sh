@@ -14,8 +14,7 @@ TIME() {
 	z) export Color="\e[35;1m";;
 	l) export Color="\e[36;1m";;
       esac
-	[[ $# -lt 2 ]] && echo -e "\e[36m\e[0m ${1}" || {
-		echo -e "\e[36m\e[0m ${Color}${2}\e[0m"
+	[[ $# -lt 2 ]]
 	 }
       }
 }
